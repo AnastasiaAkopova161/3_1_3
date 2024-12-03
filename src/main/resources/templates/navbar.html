@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="/" class="btn btn-secondary mr-2">Main page</a>
+            </li>
+            <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                <a href="/admin/users" class="btn btn-primary mr-2">All Users</a>
+            </li>
+            <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                <a href="/admin/users/create" class="btn btn-primary mr-2">Add User</a>
+            </li>
+            <li class="nav-item" th:if="${#authorization.expression('isAuthenticated()')}">
+                <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" href="/admin" class="btn btn-primary mr-2">Profile</a>
+                <a th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}" href="/user" class="btn btn-primary mr-2">Profile</a>
+            </li>
+            <li class="nav-item" th:if="${not #authorization.expression('isAuthenticated()')}">
+                <a href="/login" class="btn btn-primary mr-2">Login</a>
+            </li>
+            <li class="nav-item" th:if="${#authorization.expression('isAuthenticated()')}">
+                <a href="/logout" class="btn btn-primary mr-2">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>

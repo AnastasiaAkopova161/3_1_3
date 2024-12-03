@@ -1,0 +1,64 @@
+<th:block th:include="./header.html"></th:block>
+<div class="container table-container">
+    <table class="table" th:if="${not #lists.isEmpty(users)}">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Locked</th>
+            <th>Roles</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td>
+                <a th:href="@{/admin/users/details/{id}(id=${user.id})}">
+                    <span th:text="${user.id}"></span>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/admin/users/details/{id}(id=${user.id})}">
+                    <span th:text="${user.firstName}"></span>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/admin/users/details/{id}(id=${user.id})}">
+                    <span th:text="${user.lastName}"></span>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/admin/users/details/{id}(id=${user.id})}">
+                    <span th:text="${user.email}"></span>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/admin/users/details/{id}(id=${user.id})}">
+                    <span th:text="${user.username}"></span>
+                </a>
+            </td>
+            <td><span th:text="${user.locked}"></span></td>
+            <td>
+                <ul>
+                    <li th:each="role : ${user.roles}" th:text="${role.name}"></li>
+                </ul>
+            </td>
+            <td>
+                <a th:href="@{/admin/users/update/{id}(id=${user.id})}" class="btn btn-primary">Edit</a>
+            </td>
+            <td>
+                <a th:href="@{/admin/users/delete/{id}(id=${user.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <span th:if="${deleted}">User deleted</span>
+    <div th:if="${#lists.isEmpty(users)}" class="text-center">
+        <h1>The table Users is empty, please <a th:href="@{/admin/users/create}">add some users in the table.</a></h1>
+    </div>
+</div>
+<th:block th:include="./footer.html"></th:block>

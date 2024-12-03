@@ -1,0 +1,38 @@
+<th:block th:include="./header.html"></th:block>
+<div class="container form-container">
+    <h1>Add User</h1>
+    <form action="/admin/users/create" method="post">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="locked">Locked:</label>
+            <input type="checkbox" id="locked" name="locked" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="roles">Roles:</label>
+            <select id="roles" name="roles" class="form-control" multiple required>
+                <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add User</button>
+    </form>
+</div>
+<th:block th:include="./footer.html"></th:block>

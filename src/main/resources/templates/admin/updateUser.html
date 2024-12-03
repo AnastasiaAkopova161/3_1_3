@@ -1,0 +1,39 @@
+<th:block th:include="./header.html"></th:block>
+<div class="container form-container">
+    <h1>Update User</h1>
+    <form action="/admin/users/update" method="post">
+        <input type="hidden" id="id" name="id" th:value="${user.id}">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" class="form-control" th:value="${user.firstName}" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" class="form-control" th:value="${user.lastName}" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" th:value="${user.email}" required>
+        </div>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" class="form-control" th:value="${user.username}" required>
+        </div>
+        <div class="form-group">
+            <label for="password">New Password:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="locked">Locked:</label>
+            <input type="checkbox" id="locked" name="locked" class="form-control" th:checked="${user.locked}">
+        </div>
+        <div class="form-group">
+            <label for="roles">Roles:</label>
+            <select id="roles" name="roles" class="form-control" multiple required>
+                <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}" th:selected="${user.roles.contains(role)}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Update User</button>
+    </form>
+</div>
+<th:block th:include="./footer.html"></th:block>
